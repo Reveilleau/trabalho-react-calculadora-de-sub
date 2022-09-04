@@ -18,12 +18,35 @@ class App extends React.Component {
 
     if (event.target.name === 'subSelect') {
       if (event.target.value === 'G1') {
-        this.setState({subLabel: 'G2'})
+        this.setState({
+          subLabel: 'G2',
+          resultado: ''
+        })
+       
       } else {
-        this.setState({subLabel: 'G1'})
+        this.setState({
+          subLabel: 'G1',
+          resultado: ''
+        })  
       }
     } 
   
+  }
+
+  scoreCalculate() {
+    let result;
+    let resultScore
+    const {score, subSelect, subLabel} = this.state;
+
+    if (subSelect === 'G1') {
+      resultScore = 21 - (score *2)
+      result = `Sua nota na sub ${subLabel} deverá ser ${resultScore}`
+    } else {
+      resultScore = (21 - score) / 2
+      result = `Sua nota na sub ${subLabel} deverá ser ${resultScore}`
+    }
+
+    this.setState({ resultado: result })
   }
 
   render() {
@@ -34,7 +57,14 @@ class App extends React.Component {
         <br/>
         <br/>
         Nota {this.state.subLabel}:
-
+        <br/>
+        <input type='number' name='score' onChange={event => this.onInputChanged(event)}/>
+        <br/>
+        <input type='button' name='calculate' value='Calculate' onClick={() => this.scoreCalculate()}/>
+        <br/>
+        <br/>
+        {this.state.resultado}
+        <br/>
 
       </div>
     )
