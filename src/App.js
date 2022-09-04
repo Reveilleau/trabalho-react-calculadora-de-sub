@@ -52,6 +52,8 @@ class App extends React.Component {
   render() {
     return(
       <div>
+        <h1>Calculadora de Sub<h1/>
+        <br/>
         <input type='radio' name='subSelect' value="G1" checked={this.state.subSelect === 'G1'} onChange={event => this.onInputChanged(event)}/> Sub G1
         <input type='radio' name='subSelect' value="G2" checked={this.state.subSelect === 'G2'} onChange={event => this.onInputChanged(event)}/> Sub G2
         <br/>
